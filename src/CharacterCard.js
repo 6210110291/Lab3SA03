@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 
 export default function CharacterCard(props) {
     const [active, setActive] = useState(false);
+    const attemptRef = useRef(props.attempt);
 
     const activate = () => {
         if(!active){
@@ -10,6 +11,16 @@ export default function CharacterCard(props) {
 
         }
     }
+
+    //ตอน compnent ถูกเอาใส่ UI
+    //component update property
+    useEffect(() => {
+        // compare attemp
+        if(attemptRef.current != props.attempt){
+            setActive(false)
+            attemptRef.current = props.attempt //เพิ่มค่า attemp ใหม่
+        }
+    })
 
     const className = `card ${active ? 'activeCard': ''}`
     
