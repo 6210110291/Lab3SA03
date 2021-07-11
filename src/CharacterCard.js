@@ -1,30 +1,29 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React from 'react';
+import classnames from "classnames";
+import './card.scss';
 
-export default function CharacterCard(props) {
-    const [active, setActive] = useState(false);
-    const attemptRef = useRef(props.attempt);
+const Card = ({onclick, card, index, isInactive, isFlipped, isDisabled}) => {
+    const handleClick = () => {
+        !isFlipped && !isDisabled && onclick(index);
+    };
 
-    const activate = () => {
-        if(!active){
-            setActive(true)
-            props.activationHandler(props.value)
+    return(
+        <div className = {classnames("card",{
+                "is-flipped": isFlipped,
+                "is-inactive": isInactive
+        })}
+        onclick = {handleClick}
+        >
 
-        }
-    }
+            <div className = "card-face card-front-face">
+                <img src = "https://drive.google.com/file/d/1muVEPIxjfvHI12b3oGJ2iGAwbMhFp-Dn/view?usp=sharing"
+                alt = "cover"/>
+            </div>
 
-    //ตอน compnent ถูกเอาใส่ UI
-    //component update property
-    useEffect(() => {
-        // compare attemp
-        if(attemptRef.current != props.attempt){
-            setActive(false)
-            attemptRef.current = props.attempt //เพิ่มค่า attemp ใหม่
-        }
-    })
-
-    const className = `card ${active ? 'activeCard': ''}`
-    
-    return (
-        <div className={className} onClick={activate}>{props.value}</div>
-    )
-}
+            <div className = "card-face card-back-face">
+                <img src = ""
+                alt = "cover"/>
+            </div>
+        </div>
+    );
+};
