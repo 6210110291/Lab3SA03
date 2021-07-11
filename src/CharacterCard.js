@@ -21,9 +21,11 @@ const Card = ({onclick, card, index, isInactive, isFlipped, isDisabled}) => {
             </div>
 
             <div className = "card-face card-back-face">
-                <img src = ""
+            <img src = "https://drive.google.com/file/d/1muVEPIxjfvHI12b3oGJ2iGAwbMhFp-Dn/view?usp=sharing"
                 alt = "cover"/>
             </div>
         </div>
     );
 };
+
+export default Card;

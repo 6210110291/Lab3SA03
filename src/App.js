@@ -8,38 +8,38 @@ import {
   DialogTitle
 } from "@material-ui/core";
 import CharacterCard from './CharacterCard';
-import './App.css';
+import './App.scss';
 
 const imagesArray = [
   {
     type: "img1",
-    image: require('https://drive.google.com/file/d/1EpdyAOPTgkkEqkOWGOPjcpkls-DxLHW9/view?usp=sharing')
+    image: require('./images/img1')
   },
   {
     type: "img2",
-    image: require('https://drive.google.com/file/d/1_3giSMWXm_Bkmq0UdDm8XfaSJ7Dq0b10/view?usp=sharing')
+    image: require('./images/img2')
   },
   {
     type: "img3",
-    image: require('https://drive.google.com/file/d/1M_HaWRuoLFWPc3ivr_NiNHnJ2mg3rPJr/view?usp=sharing')
+    image: require('./images/img3')
   },
   {
     type: "img4",
-    image: require('https://drive.google.com/file/d/1CyhuK4SBSGzgPerGppdxiZIVFpez-qDB/view?usp=sharing')
+    image: require('./images/img4')
   },
   {
     type: "img5",
-    image: require('https://drive.google.com/file/d/1M_HaWRuoLFWPc3ivr_NiNHnJ2mg3rPJr/view?usp=sharing')
+    image: require('./images/img5')
   },
   {
     type: "img6",
-    image: require('https://drive.google.com/file/d/17QBHjkFX6ZLu20qZi-qfM6bB1eK3_y4l/view?usp=sharing')
+    image: require('./images/img6')
   }
 ];
 
 function shuffleCards(array) {
   const length = array.length;
-  for (let i=length; i>0 ; i--) {
+  for (let i = length; i > 0 ; i--) {
     const randomIndex = Math.floor(Math.random()*i);
     const currentIndex = i-1;
     const temp = array[currentIndex];
@@ -50,7 +50,7 @@ function shuffleCards(array) {
 }
 
 export default function App() {
-  const [cards, setCards]=useState (
+  const [cards, setCards] = useState (
     shuffleCards.bind(null, imagesArray.concat(imagesArray))
   );
   const [openCards, setOpenCards] = useState([]);
@@ -71,7 +71,7 @@ export default function App() {
   };
 
   const checkCompletion = () => {
-    if (Object.keys(clearedCards).length === uniqueElementsArray.length) {
+    if (Object.keys(clearedCards).length === imagesArray.length) {
       setShowModal(true);
       const highScore = Math.min(moves, bestScore);
       setBestScore(highScore);
@@ -87,7 +87,7 @@ export default function App() {
       setOpenCards([]);
       return;
     }
-    // This is to flip the cards back after 500ms duration
+    
     timeout.current = setTimeout(() => {
       setOpenCards([]);
     }, 500);
@@ -131,11 +131,10 @@ export default function App() {
     setShowModal(false);
     setMoves(0);
     setShouldDisableAllCards(false);
-    // set a shuffled deck of cards
-    setCards(shuffleCards(uniqueElementsArray.concat(uniqueElementsArray)));
+    setCards(shuffleCards(imagesArray.concat(imagesArray)));
   };
 
-}
+
 
 return (
   <div className="App">
@@ -161,8 +160,8 @@ return (
 
     <footer>
       <div className = "score">
-        <div className = "move">
-          <span className ="bold">Move : </span> {move}
+        <div className = "moves">
+          <span className ="bold">Moves : </span> {moves}
         </div>
         {localStorage.getItem("bestScore") && (
           <div className = "high-score">
@@ -171,7 +170,7 @@ return (
         )}
       </div>
 
-      <div className = "Restart">
+      <div className = "restart">
         <Buttom onClock={handleReStart} color="primary" variant="contained">
           Restart
         </Buttom>
@@ -201,4 +200,5 @@ return (
         </DialogActions>
     </Dialog>
   </div>
-)
+);
+}
