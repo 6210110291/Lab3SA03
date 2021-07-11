@@ -19,3 +19,6 @@ sec 01
 มีการใช้แพ็คเกจเพิ่มเติม : classnames, @material-ui/core, sass-loader
 
 
+
+
+Ref https://javascript.plainenglish.io/building-a-card-memory-game-in-react-e6400b226b8f

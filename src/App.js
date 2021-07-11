@@ -13,7 +13,7 @@ import './App.scss';
 const uniqueCardsArray = [
   {
     type: "img1",
-    image: require('./images/cover.png')
+    image: require('./images/img1.jpg')
   },
   {
     type: "img2",
@@ -112,10 +112,12 @@ export default function App() {
     return () => {
       clearTimeout(timeout);
     };
+    // eslint-disable-next-line
   }, [openCards]);
 
   useEffect(() => {
     checkCompletion();
+    // eslint-disable-next-line
   }, [clearedCards]);
   const checkIsFlipped = (index) => {
     return openCards.includes(index);
@@ -137,7 +139,7 @@ export default function App() {
   return (
     <div className="App">
       <header>
-        <h3>Play the Flip card game</h3>
+        <h3>Flip card game</h3>
         <div>
           Select two cards with same content consequtively to make them vanish
         </div>
@@ -182,7 +184,7 @@ export default function App() {
         aria-describedby="alert-dialog-description"
       >
         <DialogTitle id="alert-dialog-title">
-          Hurray!!! You completed the challenge
+          Yeah!!! You win!!!
         </DialogTitle>
         <DialogContent>
           <DialogContentText id="alert-dialog-description">

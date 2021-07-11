@@ -1,6 +1,6 @@
 import React from "react";
 import classnames from "classnames";
-import backCard from "./images/cover.png";
+import imgCard from "./images/cover.png";
 import "./card.scss";
 
 const Card = ({ onClick, card, index, isInactive, isFlipped, isDisabled }) => {
@@ -17,11 +17,11 @@ const Card = ({ onClick, card, index, isInactive, isFlipped, isDisabled }) => {
       onClick={handleClick}
     >
       <div className ="card-face card-font-face">
-        <img src = {backCard} alt = "backCard" />
+        <img src = {imgCard} alt = "frontCard" />
       </div>
-      
+
       <div className="card-face card-back-face">
-        <img src = {card.image} alt = "frontCard" />
+        <img src = {card.image} alt = "backCard" />
       </div>
     </div>
   );
